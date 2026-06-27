@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 // MARK: - Card Model
 struct LightCard: Identifiable {
@@ -430,17 +431,17 @@ struct LightItUpView: View {
         return RoundedRectangle(cornerRadius: 16, style: .continuous)
             .fill(
                 isLit
-                ? RadialGradient(
+                ? AnyShapeStyle(RadialGradient(
                     gradient: Gradient(colors: [level.glowColor.opacity(0.9), level.glowColor.opacity(0.4)]),
                     center: .center,
                     startRadius: 5,
                     endRadius: 50
-                  )
-                : LinearGradient(
+                  ))
+                : AnyShapeStyle(LinearGradient(
                     gradient: Gradient(colors: [Color.cardBG, Color.cardBG]),
                     startPoint: .top,
                     endPoint: .bottom
-                  )
+                  ))
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
